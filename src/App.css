@@ -1,38 +1,355 @@
-.App {
+*:focus {
+  outline: none;
+}
+* {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  overflow: visible;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E2E2E2;
+  width: 232px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+
+.app{
+  margin: 0;
+}
+
+.aromatic-header{
+  background-color: #FFFFFF;
+  opacity: 1;
+  height: 60px;
+  border-radius: 5px;
+  margin-top: 21px;
+  margin-left: 18px;
+  margin-right: 17px;
+  margin-bottom: 20px;
+}
+
+.aromatic-header-text {
+  padding-left: 32px;
+  padding-top: 16px;
+  font-size: 24px;
+  font-style: bold;
+}
+
+.aromatic-form-body{
+  background-color: #FFFFFF;
+  opacity: 1;
+  border-radius: 5px;
+  margin-top: 21px;
+  margin-left: 18px;
+  margin-right: 17px;
+  margin-bottom: 20px;
+  min-height: 562px;
+  padding-bottom: 50px;
+}
+
+.form-control{
+  width: 590px;
+  height: 40px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 0.75px solid #8D8D8D80;
+  opacity: 1;
+  border-radius: 4px;
+  padding-left: 15px;
+}
+
+.input-form{
+  padding-top: 36px;
+  padding-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; 
+}
+
+input[type="checkbox"], input[type="radio"] {
+  background-color: #8870C9;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 40px;
+}
+
+label{
+  font-weight: 500;
+  color: #000000;
+  opacity: 1;
+  text-align: left;
+  font: normal normal medium 16px/19px Roboto;
+}
+
+.mandatory-field{
+  color: red;
+}
+
+.error{
+  color: #DC3545;
+  width: 600px;
+  height: 35px;
+  background-color: #FFECED;
+  border-radius: 3px;
+  border: 0.5px solid #FD464E;
+}
+
+.error p{
+  padding-left: 10px;
+  font-size: 12px;
+  align-content: center;
+}
+
+.phone-input {
+  width: 594px;
+  height: 40px;
+  background: #FFFFFF;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 0.75px solid #8D8D8D80;
+  opacity: 1;
+  border-radius: 4px;
+}
+
+.radio-group{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.options-class{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 30px;
+  padding-top: 30px;
+  gap: 50px;
+  min-width: 600px;
+}
+
+.form-group-checkbox{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aromatic-footer{
+  background-color: #FFFFFF;
+  height: 62px;
+  border-radius: 5px;
+  /* margin-top: 21px; */
+}
+
+.btnWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 17px;
+  padding-top: 11px;
+  padding-bottom: 10px;
+}
+
+.btnPrimary{
+  height: 40px;
+  width: 142px;
+  background: #48A44C;
+  font-style: bold;
+  color: #FFFFFF;
+  border-radius: 3px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* .thankyou-note{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+} */
+
+.thankyou-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.thankyou-note__content{
+  font-weight: 500;
+  color: #000000;
+  text-align: center;
+  margin-top: 291px;
+  margin-bottom: 207px;
+}
+
+.thankyou-heading{
+  margin-top:30px;
+  color: #404B69;
+  font-size: 24px;
+  line-height: 2px;
+  margin-bottom: 18px;
+}
+
+.thankyou-sub-heading{
+  color: #707070;
+  font-size: 18px;
+}
+
+.thankyou-close-button{
+  background-color: #8870C9;
+  color: #FFFFFF;
+  width: 142px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  margin-top: 26px;
+}
+
+.fg-data-body{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+
+.fg-data-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 42px;
+  align-items: center;
+}
+
+.fg-data-header-heading{
+  font-weight: 500;
+  color: #4D4F5C;
+  opacity: 1;
+  text-align: left;
+  font-size: 24px;
+  line-height: 0px;
+}
+
+.fg-data-header-sub-heading{
+  font-weight: 500;
+  color: #4D4F5C;
+  opacity: 1;
+  text-align: left;
+  font-size: 16px;
+}
+
+.fg-data-functions{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.search-input{
+  width: 149px;
+  height: 36px;
+  padding-left: 9px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 0.5px solid #C7C7C7;
+  border-radius: 3px;
+}
+
+.refresh-icon{
+  width: 36px;
+  height: 36px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 0.5px solid #C7C7C7;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-new-button{
+  width: 98px;
+  height: 35px;
+  background: #48A44C;
+  font-style: bold;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.fg-data-table{
+  margin-top: 16px;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding-left: 22px;
+}
+
+.btnDanger{
+  height: 40px;
+  width: 90px;
+  background: #EA4C89;
+  font-style: bold;
+  color: #FFFFFF;
+  border-radius: 3px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.fg-data-table{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 30px;
+  padding-right: 42px;
+}
+
+table, td, th {
+  border: 0.5px solid #C5C5C5;
+  border-collapse: collapse;
+}
+
+th{
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  border-collapse: collapse;
+}
+
+td{
+  padding-top: 19px;
+  padding-bottom: 19px;
+  min-height: 53px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.fg-table-header{
+  background-color: #EFE9FB;
+  color: #404B69;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input[type="checkbox"]:after{
+  color: #6751AC;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* .thankyou-note div {
+  width: 100px;
+  height: 100px;
+} */
