@@ -1,5 +1,5 @@
 import "../App.css";
-
+import { Link } from "react-router-dom";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const ThankYouNote = () => {
@@ -13,7 +13,9 @@ const ThankYouNote = () => {
         <p className="thankyou-sub-heading">
           We will work towards improving your experience
         </p>
-        <button className="thankyou-close-button">Close</button>
+        <Link to="/feedback-data">
+          <button className="thankyou-close-button">Close</button>
+        </Link>
       </div>
     </div>
   );

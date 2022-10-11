@@ -50,8 +50,11 @@
   margin-left: 18px;
   margin-right: 17px;
   margin-bottom: 20px;
-  min-height: 562px;
+  min-height: 500px;
   padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .form-control{
@@ -69,11 +72,21 @@
   padding-left: 30px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; 
+  width: 100;
 }
 
-input[type="checkbox"], input[type="radio"] {
-  background-color: #8870C9;
+@media screen and (max-width: 600px) {
+  .input-form{
+    padding-left: 30px;
+    display: flex;
+    width: 70;
+  }
+}
+
+
+
+.input-form > div{
+  flex: 40%;
 }
 
 .form-group{
@@ -99,15 +112,21 @@ label{
   color: #DC3545;
   width: 600px;
   height: 35px;
+  padding: auto;
   background-color: #FFECED;
   border-radius: 3px;
   border: 0.5px solid #FD464E;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 7.12px;
+  padding-left: 7px;
 }
 
-.error p{
-  padding-left: 10px;
+.error-text{
   font-size: 12px;
-  align-content: center;
+  align-content: center; 
 }
 
 .phone-input {
@@ -125,17 +144,28 @@ label{
   display: flex;
   flex-direction: row;
   gap: 20px;
+  padding-top: 2px;
+}
+
+.radio{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .options-class{
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
   padding-left: 30px;
   padding-top: 30px;
   gap: 50px;
   min-width: 600px;
+}
+
+.options-class > div{
+  flex: 40%;
 }
 
 .form-group-checkbox{
@@ -146,9 +176,8 @@ label{
 
 .aromatic-footer{
   background-color: #FFFFFF;
-  height: 62px;
+  min-height: 62px;
   border-radius: 5px;
-  /* margin-top: 21px; */
 }
 
 .btnWrapper{
@@ -157,7 +186,6 @@ label{
   justify-content: flex-end;
   padding-right: 17px;
   padding-top: 11px;
-  padding-bottom: 10px;
 }
 
 .btnPrimary{
@@ -171,15 +199,6 @@ label{
   border: none;
   cursor: pointer;
 }
-
-/* .thankyou-note{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  height: 100%;
-} */
 
 .thankyou-note {
   display: flex;
@@ -218,6 +237,19 @@ label{
   cursor: pointer;
   border: none;
   margin-top: 26px;
+  border-radius: 3px;
+}
+
+.add-feedback-button{
+  background-color: #48A44C;
+  color: #FFFFFF;
+  width: 142px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  margin-top: 26px;
+  border-radius: 3px;
 }
 
 .fg-data-body{
@@ -225,7 +257,10 @@ label{
   flex-direction: column;
   gap: 10px;
   padding-top: 41px;
-  padding-bottom: 40px;
+}
+
+.fg-data-table-body{
+  min-height: 520px;
 }
 
 .fg-data-header{
@@ -271,7 +306,6 @@ label{
 
 .refresh-icon{
   width: 36px;
-  height: 36px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 0.5px solid #C7C7C7;
   border-radius: 3px;
@@ -345,11 +379,13 @@ td{
   color: #404B69;
 }
 
-input[type="checkbox"]:after{
-  color: #6751AC;
+.view-results-button{
+  width: 98px;
+  height: 15px;
+  background: #FFFFFF;
+  color: #3D84DB;
+  border-radius: 4px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
 }
-
-/* .thankyou-note div {
-  width: 100px;
-  height: 100px;
-} */

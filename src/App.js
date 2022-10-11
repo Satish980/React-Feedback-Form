@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { FGData, FGForm, ThankYouNote } from "./components";
+import { FGData, FGForm, ThankYouNote, EmptyList } from "./components";
 import { reactLocalStorage } from "reactjs-localstorage";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [showThankYouNote, setShowThankYouNote] = useState(false);
   const [customerFeedbackData, setCustomerFeedbackData] = useState([]);
   useEffect(() => {
     let feedbackData = reactLocalStorage.getObject("customerFeedbackData");
@@ -19,15 +18,35 @@ function App() {
 
   return (
     <div className="app">
-      <FGForm
-        customerFeedbackData={customerFeedbackData}
-        setCustomerFeedbackData={setCustomerFeedbackData}
-      />
-      {/* <ThankYouNote /> */}
-      <FGData
-        customerFeedbackData={customerFeedbackData}
-        setCustomerFeedbackData={setCustomerFeedbackData}
-      />
+      <Router>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <FGForm
+                customerFeedbackData={customerFeedbackData}
+                setCustomerFeedbackData={setCustomerFeedbackData}
+              />
+            }
+          />
+
+          <Route
+            exact
+            path="/feedback-data"
+            element={
+              <FGData
+                customerFeedbackData={customerFeedbackData}
+                setCustomerFeedbackData={setCustomerFeedbackData}
+              />
+            }
+          />
+
+          <Route exact path="/submit-feedback" element={<ThankYouNote />} />
+
+          <Route exact path="/empty-list" element={<EmptyList />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

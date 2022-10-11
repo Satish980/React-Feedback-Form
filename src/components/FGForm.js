@@ -1,10 +1,15 @@
 import { useState } from "react";
-import "../App.css";
-import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import "react-phone-number-input/style.css";
+import { useNavigate } from "react-router-dom";
+import Error from "./Error";
+import Checkbox from "@mui/material/Checkbox";
+
+import "../App.css";
 
 const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
+  const navigate = useNavigate();
+
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -42,6 +47,12 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
     if (!values.phoneNumber) {
       errors.phoneNumber = "Please enter the value for the above field";
     }
+    if (
+      values.phoneNumber &&
+      !values.phoneNumber.match(/^\+[1-9]\d{10,14}$/i)
+    ) {
+      errors.phoneNumber = "Invalid phone number";
+    }
     if (!values.qualityOfService) {
       errors.qualityOfService = "Please choose the value for the above field";
     }
@@ -57,10 +68,16 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
     }
     return errors;
   };
+  const checkboxStyles = {
+    height: "18px",
+    width: "18px",
+    "&.Mui-checked": {
+      color: "#8870C9",
+    },
+  };
   const handleSubmit = event => {
     setFormErrors(onValidate(formValues));
     event.preventDefault();
-    console.log(formErrors);
     if (!Object.keys(formErrors).length && Object.keys(formValues).length) {
       let uniqueId =
         new Date().getTime().toString(36) + new Date().getUTCMilliseconds();
@@ -72,15 +89,16 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
         ...customerFeedbackData,
         newCustomerFeedbackData,
       ]);
-      // setFormValues({
-      //   name: "",
-      //   email: "",
-      //   phoneNumber: "",
-      //   qualityOfService: "",
-      //   qualityOfBeverage: "",
-      //   qualityOfCleanliness: "",
-      //   diningExperience: "",
-      // });
+      setFormValues({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        qualityOfService: "",
+        qualityOfBeverage: "",
+        qualityOfCleanliness: "",
+        diningExperience: "",
+      });
+      navigate("/submit-feedback");
     }
   };
   const formBodyStyle =
@@ -96,7 +114,7 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
       <form onSubmit={handleSubmit}>
         <div className="aromatic-form-body" style={formBodyStyle}>
           <div className="input-form">
-            <div className="form-group">
+            <div className="form-group name-field">
               <label htmlFor="name">
                 Customer Name<span className="mandatory-field">*</span>
               </label>
@@ -118,11 +136,7 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 }}
               />
               {formErrors.name ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} /> {formErrors.name}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.name} />
               ) : null}
             </div>
             <div className="form-group">
@@ -147,11 +161,7 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 }}
               />
               {formErrors.email ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} /> {formErrors.email}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.email} />
               ) : null}
             </div>
             <div className="form-group">
@@ -176,11 +186,7 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 name="phoneNumber"
               />
               {formErrors.phoneNumber ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} /> {formErrors.phoneNumber}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.phoneNumber} />
               ) : null}
             </div>
           </div>
@@ -191,12 +197,11 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 host.<span className="mandatory-field">*</span>
               </label>
               <div className="radio-group">
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
-                      value="Excellent"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       checked={formValues.qualityOfService === "Excellent"}
+                      value="Excellent"
                       onChange={e => {
                         setFormValues({
                           ...formValues,
@@ -208,14 +213,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                         });
                       }}
                       name="qualityOfService"
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Excellent
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       name="qualityOfService"
                       value="Good"
                       checked={formValues.qualityOfService === "Good"}
@@ -229,14 +234,16 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfService: "",
                         });
                       }}
+                      sx={{
+                        ...checkboxStyles,
+                      }}
                     />{" "}
                     Good
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Fair"
                       name="qualityOfService"
                       checked={formValues.qualityOfService === "Fair"}
@@ -250,13 +257,16 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfService: "",
                         });
                       }}
+                      sx={{
+                        ...checkboxStyles,
+                      }}
                     />{" "}
                     Fair
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       type="checkbox"
                       value="Bad"
                       name="qualityOfService"
@@ -271,18 +281,16 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfService: "",
                         });
                       }}
+                      sx={{
+                        ...checkboxStyles,
+                      }}
                     />{" "}
                     Bad
                   </label>
                 </div>
               </div>
               {formErrors.qualityOfService ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} />{" "}
-                    {formErrors.qualityOfService}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.qualityOfService} />
               ) : null}
             </div>
             <div className="form-group-checkbox">
@@ -291,10 +299,9 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 <span className="mandatory-field">*</span>
               </label>
               <div className="radio-group">
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Excellent"
                       name="qualityOfBeverage"
                       checked={formValues.qualityOfBeverage === "Excellent"}
@@ -308,14 +315,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfBeverage: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Excellent
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Good"
                       name="qualityOfBeverage"
                       checked={formValues.qualityOfBeverage === "Good"}
@@ -329,14 +336,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfBeverage: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Good
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Fair"
                       name="qualityOfBeverage"
                       checked={formValues.qualityOfBeverage === "Fair"}
@@ -350,14 +357,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfBeverage: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Fair
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Bad"
                       name="qualityOfBeverage"
                       checked={formValues.qualityOfBeverage === "Bad"}
@@ -371,18 +378,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfBeverage: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Bad
                   </label>
                 </div>
               </div>
               {formErrors.qualityOfBeverage ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} />{" "}
-                    {formErrors.qualityOfBeverage}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.qualityOfBeverage} />
               ) : null}
             </div>
             <div className="form-group-checkbox">
@@ -391,10 +394,9 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 <span className="mandatory-field">*</span>
               </label>
               <div className="radio-group">
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Excellent"
                       name="qualityOfCleanliness"
                       checked={formValues.qualityOfCleanliness === "Excellent"}
@@ -408,14 +410,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfCleanliness: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Excellent
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Good"
                       name="qualityOfCleanliness"
                       checked={formValues.qualityOfCleanliness === "Good"}
@@ -429,14 +431,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfCleanliness: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Good
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Fair"
                       name="qualityOfCleanliness"
                       checked={formValues.qualityOfCleanliness === "Fair"}
@@ -450,14 +452,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfCleanliness: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Fair
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Bad"
                       name="qualityOfCleanliness"
                       checked={formValues.qualityOfCleanliness === "Bad"}
@@ -471,18 +473,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           qualityOfCleanliness: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Bad
                   </label>
                 </div>
               </div>
               {formErrors.qualityOfCleanliness ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} />{" "}
-                    {formErrors.qualityOfCleanliness}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.qualityOfCleanliness} />
               ) : null}
             </div>
             <div className="form-group-checkbox">
@@ -491,10 +489,9 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                 <span className="mandatory-field">*</span>
               </label>
               <div className="radio-group">
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Excellent"
                       name="diningExperience"
                       checked={formValues.diningExperience === "Excellent"}
@@ -508,14 +505,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           diningExperience: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Excellent
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Good"
                       name="diningExperience"
                       checked={formValues.diningExperience === "Good"}
@@ -529,14 +526,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           diningExperience: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Good
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Fair"
                       name="diningExperience"
                       checked={formValues.diningExperience === "Fair"}
@@ -550,14 +547,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           diningExperience: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Fair
                   </label>
                 </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="checkbox"
+                <div>
+                  <label className="radio">
+                    <Checkbox
                       value="Bad"
                       name="diningExperience"
                       checked={formValues.diningExperience === "Bad"}
@@ -571,25 +568,27 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
                           diningExperience: "",
                         });
                       }}
+                      sx={{ ...checkboxStyles }}
                     />{" "}
                     Bad
                   </label>
                 </div>
               </div>
               {formErrors.diningExperience ? (
-                <span className="error">
-                  <p>
-                    <AiOutlineInfoCircle size={13} />{" "}
-                    {formErrors.diningExperience}
-                  </p>
-                </span>
+                <Error errorMessage={formErrors?.diningExperience} />
               ) : null}
             </div>
           </div>
         </div>
         <div className="aromatic-footer">
           <div className="btnWrapper">
-            <button type="submit" className="btnPrimary" onClick={handleSubmit}>
+            <button
+              type="submit"
+              className="btnPrimary"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
               Submit Review
             </button>
           </div>
