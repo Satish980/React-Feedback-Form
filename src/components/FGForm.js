@@ -85,10 +85,14 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
         id: uniqueId,
         data: formValues,
       };
-      setCustomerFeedbackData([
-        ...customerFeedbackData,
-        newCustomerFeedbackData,
-      ]);
+      if (Object.keys(customerFeedbackData).length) {
+        setCustomerFeedbackData([
+          ...customerFeedbackData,
+          newCustomerFeedbackData,
+        ]);
+      } else {
+        setCustomerFeedbackData([newCustomerFeedbackData]);
+      }
       setFormValues({
         name: "",
         email: "",

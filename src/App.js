@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (customerFeedbackData.length > 1)
+    if (Object.keys(customerFeedbackData).length)
       reactLocalStorage.setObject("customerFeedbackData", customerFeedbackData);
   }, [customerFeedbackData]);
 
