@@ -5,7 +5,7 @@
 
 - Download the code or clone the repository using below link
    
-      git clone https://github.com/Satish980/Restaurant-feedback-form.git
+      git clone https://github.com/Satish980/React-Feedback-Form.git
 - Install the neccessary packages using npm or yarn
    
       npm install
