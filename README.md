@@ -1,6 +1,16 @@
 # React Restaurant Feedback Application 
  This application made with using reactjs, css and local storage.
  <br/>
+ ### Features
+ 
+ - Users can add the data from index screen
+ - User can view the data from <b>localhost:3000/feedback-data</b> screen
+ - User can delete the data
+ - Developed with react and css
+ - User can search data in table by name
+ - Data will be stored in Local storage
+ - Code is simple to understand
+
 ### Setup instructions
 
 - Download the code or clone the repository using below link
@@ -18,18 +28,7 @@
 
       localhost:3000
       
- Thank you for visiting
 <br/>
-
- ### Features
- 
- - Developed with react and css
- - Search with name in table
- - Code is simple to understand
- - Data will be stored in Local storage
- - Users can add the data from index screen
- - User can view the data from <b>localhost:3000/feedback-data</b> screen
- - User can delete the data
  
  ## Screens
  ### Home or Index 
@@ -56,6 +55,9 @@
  ### Search Filter
  
 ![Screenshot 2022-10-12 at 11 38 44 PM](https://user-images.githubusercontent.com/62135514/195416995-76995203-0e14-4b4f-8f86-220b109b5e54.png)
+
+
+ ## Thank you for visiting
 
 
 
