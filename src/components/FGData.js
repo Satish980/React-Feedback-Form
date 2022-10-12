@@ -10,6 +10,7 @@ const FGData = ({ customerFeedbackData, setCustomerFeedbackData }) => {
   const [selectedIndexes, setSelectedIndexes] = useState([]);
   const [data, setData] = useState(customerFeedbackData);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const hadleRefresh = () => {
     window.location.reload();
@@ -26,9 +27,6 @@ const FGData = ({ customerFeedbackData, setCustomerFeedbackData }) => {
   };
 
   useEffect(() => {
-    if (!Object.keys(customerFeedbackData).length) {
-      navigate("/empty-list");
-    }
     if (
       searchTerm === "" ||
       searchTerm === null ||
@@ -37,6 +35,9 @@ const FGData = ({ customerFeedbackData, setCustomerFeedbackData }) => {
       setData(customerFeedbackData);
     } else {
       setData(searchResults);
+    }
+    if (loading && !Object.keys(customerFeedbackData).length) {
+      navigate("/empty-list");
     }
   }, [data, selectedIndexes, customerFeedbackData, searchTerm, searchResults]);
 

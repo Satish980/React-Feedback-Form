@@ -24,6 +24,11 @@
   margin: 0;
 }
 
+.feedback-body{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 .aromatic-header{
   background-color: #FFFFFF;
   opacity: 1;

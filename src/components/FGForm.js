@@ -49,7 +49,7 @@ const FGForm = ({ customerFeedbackData, setCustomerFeedbackData }) => {
     }
     if (
       values.phoneNumber &&
-      !values.phoneNumber.match(/^\+[1-9]\d{10,14}$/i)
+      !values.phoneNumber.match(/^\+(?:[0-9] ?){6,14}[0-9]$/i)
     ) {
       errors.phoneNumber = "Invalid phone number";
     }
