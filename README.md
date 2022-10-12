@@ -1,8 +1,7 @@
 # React Restaurant Feedback Application 
  This application made with using reactjs, css and local storage.
- 
- To setup this application on your device follow the below instructions.
-<br/>
+ <br/>
+### Setup instructions
 
 - Download the code or clone the repository using below link
    
@@ -21,3 +20,48 @@
       
  Thank you for visiting
 <br/>
+
+ ### Features
+ 
+ - Developed with react and css
+ - Search with name in table
+ - Code is simple to understand
+ - Data will be stored in Local storage
+ - Users can add the data from index screen
+ - User can view the data from <b>localhost:3000/feedback-data</b> screen
+ - User can delete the data
+ 
+ ## Screens
+ ### Home or Index 
+
+![Screenshot 2022-10-12 at 11 36 00 PM](https://user-images.githubusercontent.com/62135514/195416963-c2e1db0b-3023-4514-96d6-5183d83e39ee.png)
+
+ ### Error 
+
+![Screenshot 2022-10-12 at 11 37 00 PM](https://user-images.githubusercontent.com/62135514/195416975-bdcfab20-39bc-43c2-8eff-63326ac47833.png)
+
+ ### Thank You Screen
+
+![Screenshot 2022-10-12 at 11 37 47 PM](https://user-images.githubusercontent.com/62135514/195416984-f1c6b7f8-98bf-470c-9de2-be62a20db800.png)
+
+ ### Table Data Screen
+ 
+![Screenshot 2022-10-12 at 11 38 16 PM](https://user-images.githubusercontent.com/62135514/195416989-47e97e69-c51a-467a-97bf-7588cb998727.png)
+
+
+ ### Added Screen
+ 
+ ![Screenshot 2022-10-12 at 11 42 51 PM](https://user-images.githubusercontent.com/62135514/195417474-0863345b-7bc0-4054-b28b-77577586a29b.png)
+ 
+ ### Search Filter
+ 
+![Screenshot 2022-10-12 at 11 38 44 PM](https://user-images.githubusercontent.com/62135514/195416995-76995203-0e14-4b4f-8f86-220b109b5e54.png)
+
+
+
+
+
+
+
+
+ 
